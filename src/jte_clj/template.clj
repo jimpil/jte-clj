@@ -1,6 +1,5 @@
 (ns jte-clj.template
-  (:require [clojure.java.io :as io]
-            [clojure.string :as str]
+  (:require [clojure.string :as str]
             [jte-clj.proto :as p])
   (:import [gg.jte Content TemplateEngine TemplateOutput]
            [java.util Map]))
