@@ -6,8 +6,8 @@
 
 (def engine-plain
   (delay
-    (-> "templates"
-        io/resource
+    (-> "test/resources/templates"
+        io/file
         (engine/create :template/plain))))
 
 (deftest render-string-tests
