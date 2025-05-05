@@ -1,4 +1,4 @@
-(defproject com.github.jimpil/jte-clj "0.1.1"
+(defproject com.github.jimpil/jte-clj "0.1.2-SNAPSHOT"
   :description "Lightweight Clojure wrapper around JTE (Java Template Engine)"
   :url "https://github.com/jimpil/jte-clj"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
