@@ -4,6 +4,9 @@ A Clojure templating library - wrapper around [JTE](https://jte.gg/).
 
 ## Usage
 
+The API is intuitive and minimal - in fact, it wouldn't be far-fetched to say that, 
+there really is a single function to get familiar with (i.e. `template/render!`). 
+
 ### Engine
 The first thing you want to do, is to construct a `gg.jte.TemplateEngine` object.
 You do this via the `engine/create` fn (or `engine/create-precompiled` but more on this later).
@@ -14,12 +17,12 @@ expected to be long-lived.
 Example: 
 ```clj
 (def engine-plain
-  (-> (io/resource "jte-templates") 
+  (-> (io/resource "jte-templates")  ;; just an example
       (engine/create :template/plain)))
 ```
 
 ### Rendering
-This is achieved (mainly) via the `template/render!` fn. It takes the following arguments:
+This is achieved (primarily) via the `template/render!` fn. It takes the following arguments:
 
 1. the engine (constructed above)
 2. the file-name (String) of the template to render (must exist in the directory declared when constructed the engine)
@@ -44,7 +47,7 @@ We can render it like so:
 
 ```clj
 (def params {:name "dimitris" :city "Manchester"})
-(template/render-to-string engine-plain "hello.jte" params "")
+(template/render-to-string engine-plain "hello.jte" params "") ;; rendering to an empty string
 
 ;; => "\nHello Manchester - my name is dimitris!"
 ```
