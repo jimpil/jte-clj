@@ -31,7 +31,7 @@
    (if-some [ct (get content-types content-type)]
      (-> class-dir
          (Path/of (make-array String 0))
-         (TemplateEngine/createPrecompiled ct #_(RT/baseLoader)))
+         (TemplateEngine/createPrecompiled ct))
      (throw
        (IllegalArgumentException.
          (str "Invalid content-type: " content-type))))))

@@ -21,13 +21,14 @@ Example:
 ### Rendering
 This is achieved (mainly) via the `template/render!` fn. It takes the following arguments:
 
-1. the engine (constructed earlier)
+1. the engine (constructed above)
 2. the file-name (String) of the template to render (must exist in the directory declared when constructed the engine)
 3. the parameters (Map) to 'slot-into' the template (the template refers to those by their key in this map)
-4. the rendering output (i.e. where to render the result) - should be `String`/`Path`/`File`/`Writer`/`PrintWriter`
+4. the rendering output (defaults to *out*) - should be `String`/`Path`/`File`/`Writer`/`PrintWriter`
 
 Specifically for rendering to String, there is a convenience fn `template/render-to-string`, 
-which returns an actual String.
+which returns an actual String. Admittedly, the same thing can be achieved by composing the 3-arg arity of 
+`render!` with `with-out-str`.
 
 Example: 
 
@@ -55,8 +56,8 @@ and leverage `engine/create-precompiled`. The only difference here is that it ex
 a directory to find compiled java (i.e. `.class`) files - NOT `.jte` ones! Therefore,
 you need to turn your `.jte` files to `.class` ones. In Java, this is typically done via 
 a maven/gradle plugin, but in Clojure, the easiest way is to generate the Java sources 
-(i.e. `.java` files) straight into your project sources, and let your build tool 
-(e.g. `lein`, `tools.deps` etc) do the rest (i.e. to compile them as usual Java sources).
+(i.e. `.java` files) straight into your project sources, and let your build tool/process 
+(e.g. `lein`, `tools.deps` etc) do the rest - i.e. to compile them as usual Java sources.
 
 You can turn your `.jte` files to `.java` ones via the `engine/generate-sources` fn.
 It returns a vector of the generated file paths (under `:target-dir`).
@@ -71,12 +72,11 @@ Example:
 
 ;; => ["foo/templates/JtehelloGenerated.java"]                   
 ```
-Once you have done that, and assuming your build tool will AOT java sources,
+Once you have done that, and assuming your build tool will/can AOT java sources,
 you can create your engine like so:
 
 ```clj
-(def engine-plain-precompiled
-  (engine/create "foo/templates" :template/plain))
+(engine/create-precompiled "foo/templates" :template/plain)
 ```
 
 ## License
